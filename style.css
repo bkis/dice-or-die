@@ -3,15 +3,62 @@
     padding: 0;
 }
 
-nav {
+body {
+    font-family: sans-serif;
+    color: #000;
+}
+
+
+/* STOCK */
+
+#stock {
+    display: flex;
+    justify-content: center;
     padding: 2rem;
     background-color: rgba(100, 0, 0, 0.2);
 }
 
-main {
+.die-stock {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 0 1rem;
+    cursor: pointer;
+    font-size: 20px;
+    opacity: 0.3;
+    filter: blur(.5px);
+    transition: .2s;
+}
+
+.die-stock:hover {
+    opacity: 0.8;
+    filter: blur(0);
+    font-weight: bolder;
+    font-size: 24px;
+}
+
+
+/* HAND */
+
+#hand {
+    padding: 1rem;
+    background-color: rgba(100, 100, 0, 0.2);
+}
+
+
+/* TABLE */
+
+#table {
     padding: 1rem;
     background-color: rgba(0, 100, 0, 0.2);
 }
+
+
+/* GENERAL */
 
 .die {
     display: flex !important;
@@ -28,7 +75,7 @@ main {
     font-weight: bold;
 }
 
-#die-template {
+#templates {
     display: none;
 }
 

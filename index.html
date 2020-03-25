@@ -17,26 +17,31 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="https://www.mozilla.org/firefox/new/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <!-- DICE SELECTOR NAV -->
-        <nav></nav>
+        <!-- STOCK: AVAILABLE DICE -->
+        <div id="stock">
+            <div class="die-stock" data-type="4"></div>
+            <div class="die-stock" data-type="6"></div>
+            <div class="die-stock" data-type="8"></div>
+            <div class="die-stock" data-type="10"></div>
+            <div class="die-stock" data-type="12"></div>
+            <div class="die-stock" data-type="20"></div>
+            <div class="die-stock" data-type="30"></div>
+            <div class="die-stock" data-type="100"></div>
+        </div>
 
-        <!-- MAIN DICE CONTAINER -->
-        <main id="dice-container"></main>
+        <!-- TABLE: DICE SELECTED FOR GAME -->
+        <div id="table"></div>
 
         <!-- TEMPLATES -->
         <div id="templates">
-
-            <div class="die-nav">
-                <img src="" alt=""/>
-            </div>
 
             <div class="die">
                 <img class="die-img" src="" alt=""/>
                 <div class="die-value"></div>
                 <div class="die-buttons">
-                    <div class="die-button-select">S</div>
-                    <div class="die-button-roll">R</div>
-                    <div class="die-button-delete">D</div>
+                    <div class="btn-select">S</div>
+                    <div class="btn-roll">R</div>
+                    <div class="btn-delete">D</div>
                 </div>
             </div>
 
