@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    padding: 2rem;
+    background-color: rgba(100, 0, 0, 0.2);
+}
+
+main {
+    padding: 1rem;
+    background-color: rgba(0, 100, 0, 0.2);
+}
+
+.die {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 64px;
+    margin: 1rem;
+    background-color: rgba(0, 0, 100, 0.2);
+}
+
+.die > .number {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#die-template {
+    display: none;
+}
+
