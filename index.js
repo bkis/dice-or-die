@@ -144,7 +144,7 @@ $(function() {
                 ")"
         );
         // label
-        $(this).text($(this).attr("data-type"));
+        $(this).append($(this).attr("data-type"));
         // click handler
         $(this).click(function(e) {
             e.stopPropagation();
