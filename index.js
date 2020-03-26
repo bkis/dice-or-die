@@ -14,6 +14,25 @@ $.fn.animateRotate = function(angle, duration, easing, complete) {
 };
 
 var total = 0;
+var sound = false;
+var rollSound = document.createElement("audio");
+rollSound.src = "sounds/roll.ogg";
+rollSound.load();
+
+function toggleSound(){
+    sound = !sound;
+    $("#sound-toggle").css(
+        "background-image",
+        sound
+            ? "url(img/icon-sound-on.png)"
+            : "url(img/icon-sound-off.png)");
+}
+
+function playRollSound(){
+    rollSound.pause();
+    rollSound.fastSeek(0);
+    rollSound.play();
+}
 
 //// INITIALIZE
 $(function() {
@@ -49,6 +68,8 @@ $(function() {
         die.find(".die-buttons > .btn-roll").first().click(function(e) {
             // prevent click event bubbling up
             event.stopPropagation();
+            //play sound
+            if (sound) playRollSound();
             //reset total
             total = 0;
             $("#total").text("?").animateRotate(720, 1000, "swing");
@@ -121,16 +142,17 @@ $(function() {
             e.stopPropagation();
             addDie(parseInt($(this).attr("data-type")));
         });
-        // plus-icon
-        $(this).append($("<img/>", {
-            src: "img/icon-add.png",
-            alt: "+",
-            class: "icon-add"
-        }));
     });
 
+    // EVENT: unselect all dice
     $("html").click(function(e) {
         e.stopPropagation();
         $(".die").removeClass("active");
+    });
+
+    // EVENT: toggle sound
+    $("#sound-toggle").click(function(e){
+        e.stopPropagation();
+        toggleSound();
     });
 });

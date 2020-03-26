@@ -32,6 +32,7 @@ body {
 #stock {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
     padding: 1rem;
 }
@@ -69,6 +70,28 @@ body {
     -webkit-box-shadow: 0px 0px 3px 3px rgba(255,255,255,1);
     -moz-box-shadow: 0px 0px 3px 3px rgba(255,255,255,1);
     box-shadow: 0px 0px 3px 3px rgba(255,255,255,1);
+}
+
+
+/* SOUND TOGGLE */
+
+#sound-toggle {
+    width: 32px;
+    height: 32px;
+    margin: 1rem;
+    cursor: pointer;
+    opacity: 0.2;
+    filter: blur(.5px);
+    transition: .1s;
+    background-image: url('img/icon-sound-off.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    justify-self: right;
+}
+
+#sound-toggle:hover {
+    opacity: 0.8;
+    filter: blur(0);
 }
 
 
