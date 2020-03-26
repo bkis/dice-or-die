@@ -73,6 +73,10 @@ $(function() {
             //reset total
             total = 0;
             $("#total").text("?").animateRotate(720, 1000, "swing");
+            //reset all dice to their natural max value
+            $(".die").each(function(){
+                $(this).find(".rotatable > .die-value").first().text($(this).attr("data-type"));
+            })
             // roll this and all active dice
             let toRoll = die.hasClass("active") ? $(".active").add(die) : die;
             toRoll.each(function(){
