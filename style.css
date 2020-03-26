@@ -137,7 +137,7 @@ body {
     height: 128px;
     margin: .5rem 1rem 1rem 1rem;
     border-radius: 4px;
-    font-size: 40px;
+    font-size: 44px;
     text-align: center;
     opacity: 0.45;
     transition: .1s;
@@ -147,7 +147,7 @@ body {
 .die:hover {
     opacity: 0.8;
     font-weight: bolder;
-    font-size: 42px;
+    font-size: 48px;
 }
 
 .die.active {
