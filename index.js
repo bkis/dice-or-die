@@ -34,6 +34,12 @@ function playRollSound(){
     rollSound.play();
 }
 
+function resetDieValues(){
+    $(".die").each(function(){
+        $(this).find(".rotatable > .die-value").first().text($(this).attr("data-type"));
+    });
+}
+
 //// INITIALIZE
 $(function() {
     //// GENERAL CONSTANTS
@@ -74,9 +80,7 @@ $(function() {
             total = 0;
             $("#total").text("?").animateRotate(720, 1000, "swing");
             //reset all dice to their natural max value
-            $(".die").each(function(){
-                $(this).find(".rotatable > .die-value").first().text($(this).attr("data-type"));
-            })
+            resetDieValues();
             // roll this and all active dice
             let toRoll = die.hasClass("active") ? $(".active").add(die) : die;
             toRoll.each(function(){
@@ -152,6 +156,7 @@ $(function() {
     $("html").click(function(e) {
         e.stopPropagation();
         $(".die").removeClass("active");
+        resetDieValues();
     });
 
     // EVENT: toggle sound
