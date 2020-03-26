@@ -29,6 +29,9 @@
             <div class="die-stock" data-type="100"></div>
         </div>
 
+        <!-- RESULT DISPLAY: result of single or multi die rolls -->
+        <div id="total">?</div>
+
         <!-- TABLE: DICE SELECTED FOR GAME -->
         <div id="table"></div>
 
@@ -36,11 +39,13 @@
         <div id="templates">
 
             <div class="die">
-                <img class="die-image" alt=""/>
-                <div class="die-value"></div>
+                <div class="rotatable">
+                    <img class="die-image" alt=""/>
+                    <div class="die-value"></div>
+                </div>
                 <div class="die-buttons">
-                    <div class="btn-roll" title="roll">&curarr;</div>
-                    <div class="btn-remove" title="remove">&times;</div>
+                    <div class="btn-roll" title="roll"></div>
+                    <div class="btn-remove" title="remove"></div>
                 </div>
             </div>
 

@@ -13,6 +13,7 @@ $.fn.animateRotate = function(angle, duration, easing, complete) {
     });
 };
 
+var total = 0;
 
 //// INITIALIZE
 $(function() {
@@ -32,21 +33,11 @@ $(function() {
         die.attr("data-type", type);
 
         // set image
-        die.children(".die-image").first()
+        die.find(".rotatable > .die-image").first()
             .attr("src", imgDirPath + imgNamePrefix + type + imgNameSuffix);
 
-        //roll function
-        die.roll = function() {
-            die.animateRotate(90, {
-                duration: 1337,
-                easing: "linear",
-                complete: function() {},
-                step: function() {}
-            });
-        };
-
         // set initial value text
-        die.children(".die-value").first().text(type);
+        die.find(".rotatable > .die-value").first().text(type);
 
         // button functionality: SELECT
         die.click(function(e) {
@@ -58,21 +49,26 @@ $(function() {
         die.find(".die-buttons > .btn-roll").first().click(function(e) {
             // prevent click event bubbling up
             event.stopPropagation();
+            //reset total
+            total = 0;
+            $("#total").text("?").animateRotate(720, 1000, "swing");
             // roll this and all active dice
             let toRoll = die.hasClass("active") ? $(".active").add(die) : die;
             toRoll.each(function(){
                 let currentDie = $(this);
-                currentDie.children(".die-value").first().text("?");
-                currentDie.children(".die-image").first().animateRotate(
+                currentDie.find(".rotatable > .die-value").first().text("?");
+                currentDie.children(".rotatable").first().animateRotate(
                     720,
-                    1500,
+                    1000,
                     "swing",
                     function() {
-                        currentDie.children(".die-value").first()
-                            .text(Math.floor(Math.random() * parseInt(currentDie.attr("data-type"))) + 1);
+                        let result = Math.floor(Math.random() * parseInt(currentDie.attr("data-type"))) + 1;
+                        total += parseInt(result);
+                        currentDie.find(".rotatable > .die-value").first().text(result);
+                        $("#total").text(total);
                     }
                 );
-            })
+            });
         });
 
         // button functionality: REMOVE
@@ -86,9 +82,11 @@ $(function() {
         die.children(".die-buttons").first().hide(0);
         die.mouseenter(function() {
             die.children(".die-buttons").first().show(100);
+            die.children(".die-select").first().show(100);
         });
         die.mouseleave(function() {
             die.children(".die-buttons").first().hide(100);
+            die.children(".die-select").first().hide(100);
         });
 
         // add die to table
@@ -123,6 +121,12 @@ $(function() {
             e.stopPropagation();
             addDie(parseInt($(this).attr("data-type")));
         });
+        // plus-icon
+        $(this).append($("<img/>", {
+            src: "img/icon-add.png",
+            alt: "+",
+            class: "icon-add"
+        }));
     });
 
     $("html").click(function(e) {
