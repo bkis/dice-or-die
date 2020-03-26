@@ -98,7 +98,7 @@ $(function() {
             playRollSound();
             //reset total
             total = 0;
-            $("#total").text("?").animateRotate(720, 1000, "swing");
+            $("#total-value").text("?").animateRotate(720, 1000, "swing");
             //reset all dice to their natural max value
             resetDieValues();
             // roll this and all active dice
@@ -114,7 +114,7 @@ $(function() {
                         let result = Math.floor(Math.random() * parseInt(currentDie.attr("data-type"))) + 1;
                         total += parseInt(result);
                         currentDie.find(".rotatable > .die-value").first().text(result);
-                        $("#total").text(total);
+                        $("#total-value").text(total);
                     }
                 );
             });
@@ -185,5 +185,5 @@ $(function() {
         e.stopPropagation();
         toggleSound();
     });
-    
+
 });
