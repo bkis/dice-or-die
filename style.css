@@ -255,6 +255,18 @@ body {
     display: none;
 }
 
+#gh-link {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    opacity: 0.25;
+    transition: .2s;
+}
+
+#gh-link:hover {
+    opacity: 0.8;
+}
+
 
 /* MOBILE */
 
