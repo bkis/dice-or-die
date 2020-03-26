@@ -152,7 +152,7 @@ $(function() {
         });
     });
 
-    // EVENT: unselect all dice
+    // EVENT: deselect all dice
     $("html").click(function(e) {
         e.stopPropagation();
         $(".die").removeClass("active");
