@@ -58,8 +58,10 @@ $(function() {
         die.attr("data-type", type);
 
         // set image
-        die.find(".rotatable > .die-image").first()
-            .attr("src", imgDirPath + imgNamePrefix + type + imgNameSuffix);
+        die.find(".rotatable > .die-image").first().css(
+            "background-image",
+            "url(" + imgDirPath + imgNamePrefix + type + imgNameSuffix + ")"
+        );
 
         // set initial value text
         die.find(".rotatable > .die-value").first().text(type);
