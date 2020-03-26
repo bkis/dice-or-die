@@ -1,3 +1,11 @@
+
+/**
+ *      dice-or-die!
+ *      https://github.com/bkis/dice-or-die
+ *      (MIT-license)
+ */
+
+
 //// ROLL ANIMATION (thanks to https://stackoverflow.com/a/15191130)
 $.fn.animateRotate = function(angle, duration, easing, complete) {
     var args = $.speed(duration, easing, complete);
@@ -13,12 +21,16 @@ $.fn.animateRotate = function(angle, duration, easing, complete) {
     });
 };
 
+
+//// preps
+
 var total = 0;
 var sound = false;
 var rollSound = document.createElement("audio");
 rollSound.src = "sounds/roll.ogg";
 rollSound.load();
 
+// fnc to toggle sound on/off
 function toggleSound(){
     sound = !sound;
     $("#sound-toggle").css(
@@ -28,17 +40,23 @@ function toggleSound(){
             : "url(img/icon-sound-off.png)");
 }
 
+// fnc to play dice rolling sound
 function playRollSound(){
-    rollSound.pause();
-    rollSound.fastSeek(0);
-    rollSound.play();
+    if (sound){
+        rollSound.pause();
+        rollSound.fastSeek(0);
+        rollSound.play();
+    }
 }
 
+// fnc to reset dice's values to their maximum
+// so the types are visually obvious...
 function resetDieValues(){
     $(".die").each(function(){
         $(this).find(".rotatable > .die-value").first().text($(this).attr("data-type"));
     });
 }
+
 
 //// INITIALIZE
 $(function() {
@@ -77,7 +95,7 @@ $(function() {
             // prevent click event bubbling up
             event.stopPropagation();
             //play sound
-            if (sound) playRollSound();
+            playRollSound();
             //reset total
             total = 0;
             $("#total").text("?").animateRotate(720, 1000, "swing");
@@ -109,20 +127,21 @@ $(function() {
             die.remove();
         });
 
-        // hide buttons
+        // hide die buttons initially
         die.children(".die-buttons").first().hide(0);
+        // show die buttons on mouse enter
         die.mouseenter(function() {
             die.children(".die-buttons").first().show(100);
-            die.children(".die-select").first().show(100);
         });
+        // hide die buttons on mouse leave
         die.mouseleave(function() {
             die.children(".die-buttons").first().hide(100);
-            die.children(".die-select").first().hide(100);
         });
 
         // add die to table
         $("#table").append(die);
     };
+
 
     //// INIT UI
 
@@ -166,4 +185,5 @@ $(function() {
         e.stopPropagation();
         toggleSound();
     });
+    
 });

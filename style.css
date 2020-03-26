@@ -4,9 +4,7 @@
     src: url('fonts/Catamaran-Regular.ttf');
 }
 
-
 /* GENERAL */
-
 
 * {
     margin: 0;
@@ -25,7 +23,6 @@ body {
     font-family: 'Catamaran', sans-serif;
     color: #000;
 }
-
 
 /* STOCK */
 
@@ -78,7 +75,6 @@ body {
     box-shadow: 0px 0px 3px 3px rgba(255,255,255,1);
 }
 
-
 /* SOUND TOGGLE */
 
 #sound-toggle {
@@ -99,7 +95,6 @@ body {
     opacity: 0.8;
     filter: blur(0);
 }
-
 
 /* TOTAL */
 
@@ -123,7 +118,6 @@ body {
     */
  }
 
-
 /* TABLE */
 
 #table {
@@ -133,7 +127,6 @@ body {
     padding: 2rem;
     padding-top: 1rem;
 }
-
 
 /* DICE */
 
@@ -266,7 +259,6 @@ body {
 #gh-link:hover {
     opacity: 0.8;
 }
-
 
 /* MOBILE */
 
