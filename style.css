@@ -1,7 +1,7 @@
 /* FONTS */
 
-@font-face { font-family: 'Josefin'; 
-    src: url('fonts/JosefinSans-Regular.ttf');
+@font-face { font-family: 'Catamaran'; 
+    src: url('fonts/Catamaran-Regular.ttf');
 }
 
 
@@ -22,7 +22,7 @@
 }
 
 body {
-    font-family: 'Josefin', sans-serif;
+    font-family: 'Catamaran', sans-serif;
     color: #000;
 }
 
@@ -32,7 +32,8 @@ body {
 #stock {
     display: flex;
     justify-content: center;
-    padding: 2rem;
+    flex-wrap: wrap;
+    padding: 1rem;
 }
 
 .die-stock {
@@ -44,7 +45,7 @@ body {
     align-items: center;
     background-size: contain;
     background-repeat: no-repeat;
-    margin: 0 1rem;
+    margin: 1rem;
     cursor: pointer;
     font-size: 18px;
     opacity: 0.2;
