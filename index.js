@@ -209,7 +209,7 @@ $(function() {
         });
     });
 
-    // EVENT: deselect all dice
+    // EVENT: deselect all dice and hide help
     $("html").click(function(e) {
         e.stopPropagation();
         $(".die").removeClass("active");
@@ -220,6 +220,18 @@ $(function() {
     $("#sound-toggle").click(function(e){
         e.stopPropagation();
         toggleSound();
+    });
+
+    // EVENT: show help
+    $("#help-button").click(function(e){
+        e.stopPropagation();
+        $("#help").css("display", "flex");
+    });
+
+    // EVENT: hide help
+    $("#help").click(function(e){
+        e.stopPropagation();
+        $("#help").css("display", "none");
     });
 
 });

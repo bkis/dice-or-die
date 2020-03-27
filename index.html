@@ -28,6 +28,7 @@
             <div class="die-stock" data-type="100"><img src="img/icon-add.png" class="icon-add" alt="+"/></div>
 
             <div id="sound-toggle"></div>
+            <div id="help-button"></div>
         </div>
 
         <!-- RESULT DISPLAY: result of single or multi die rolls -->
@@ -52,12 +53,38 @@
 
         </div>
 
+        <!-- HELP MODAL -->
+        <div id="help">
+            <div>
+                <img src="img/d20.png" alt=""/>
+                <br/>
+                <p><strong>dice-or-die: </strong>Well, it's a dice rolling simulation.
+                Add dice to the "table" by clicking the type of die you need
+                at the top of the page. Roll a single die by hovering over it
+                and clicking the "roll" button (circular arrow symbol). Roll
+                multiple dice by selecting all the dice you want to roll
+                (<i>click on them!</i>), then roll one of them - this will roll all
+                selected dice. See the total value in the circle above your dice.</p>
+                <br/>
+                <p>
+                    Visit at Github:
+                    <a href="https://github.com/bkis/dice-or-die"
+                    title="visit bkis/dice-or-die on GitHub"
+                    target="_blank" rel="noopener noreferrer">
+                        bkis/dice-or-die
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <!-- GH-LINK -->
         <a id="gh-link" href="https://github.com/bkis/dice-or-die"
         title="visit bkis/dice-or-die on GitHub"
         target="_blank" rel="noopener noreferrer">
             <img src="img/icon-gh.png" alt="visit bkis/dice-or-die on GitHub"/>
         </a>
 
+        <!-- LOAD JS -->
         <script src="index.js" async defer></script>
 
     </body>

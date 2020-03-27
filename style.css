@@ -75,9 +75,9 @@ body {
     box-shadow: 0px 0px 3px 3px rgba(255,255,255,1);
 }
 
-/* SOUND TOGGLE */
+/* SOUND TOGGLE & HELP BUTTON */
 
-#sound-toggle {
+#sound-toggle, #help-button {
     width: 32px;
     height: 32px;
     margin: 1rem;
@@ -85,15 +85,21 @@ body {
     opacity: 0.2;
     filter: blur(.5px);
     transition: .1s;
-    background-image: url('img/icon-sound-off.png');
     background-repeat: no-repeat;
     background-size: contain;
-    justify-self: right;
 }
 
-#sound-toggle:hover {
+#sound-toggle:hover, #help-button:hover {
     opacity: 0.8;
     filter: blur(0);
+}
+
+#sound-toggle {
+    background-image: url('img/icon-sound-off.png');
+}
+
+#help-button {
+    background-image: url('img/icon-help.png');
 }
 
 /* TOTAL */
@@ -258,6 +264,36 @@ body {
 
 #gh-link:hover {
     opacity: 0.8;
+}
+
+/* HELP MODAL */
+
+#help {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    width: 100vw;
+    height: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: .2s;
+}
+
+#help > div {
+    width: 512px;
+    max-width: 95%;
+    padding: 2rem;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+#help > div > img {
+    width: 32px;
 }
 
 /* MOBILE */
