@@ -66,6 +66,7 @@ var preLoadImages = function(imagesArray) {
 //// preps
 
 var total = 0;
+var currentRollId = "";
 var sound = false;
 var rollSound = document.createElement("audio");
 rollSound.src = "sounds/roll.ogg";
@@ -126,6 +127,9 @@ function addDie(type) {
     die.find(".die-buttons > .btn-roll").first().click(function(e) {
         // prevent click event bubbling up
         event.stopPropagation();
+        // set last Roll ID
+        currentRollId = "roll_" + Date.now();
+        let thisRollId = currentRollId;
         //play sound
         playRollSound();
         //reset total
@@ -143,6 +147,7 @@ function addDie(type) {
                 1000,
                 "swing",
                 function() {
+                    if (thisRollId !== currentRollId) return;
                     let result = Math.floor(Math.random() * parseInt(currentDie.attr("data-type"))) + 1;
                     total += parseInt(result);
                     currentDie.find(".rotatable > .die-value").first().text(result);
