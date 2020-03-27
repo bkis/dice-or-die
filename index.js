@@ -86,7 +86,7 @@ function toggleSound(){
 function playRollSound(){
     if (sound){
         rollSound.pause();
-        rollSound.fastSeek(0);
+        rollSound.currentTime = 0;
         rollSound.play();
     }
 }
