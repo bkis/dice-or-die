@@ -32,7 +32,15 @@
         </div>
 
         <!-- RESULT DISPLAY: result of single or multi die rolls -->
-        <div id="total"><span id="total-value">?</span></div>
+        <div id="total">
+            <div class="rotatable" title="Click to select all dice!">
+                <div id="total-value">?</div>
+            </div>
+            <div class="die-buttons">
+                <div class="btn-roll-selected" title="Roll all (or all selected) dice!"></div>
+                <div class="btn-remove-selected" title="Remove all (or all selected) dice from table!"></div>
+            </div>
+        </div>
 
         <!-- TABLE: DICE SELECTED FOR GAME -->
         <div id="table"></div>
@@ -41,13 +49,13 @@
         <div id="templates">
 
             <div class="die">
-                <div class="rotatable">
+                <div class="rotatable" title="Click to select/deselect!">
                     <div class="die-image"></div>
                     <div class="die-value"></div>
                 </div>
                 <div class="die-buttons">
-                    <div class="btn-roll" title="roll"></div>
-                    <div class="btn-remove" title="remove"></div>
+                    <div class="btn-roll" title="Roll this (and any selected) die!"></div>
+                    <div class="btn-remove" title="Remove this die from table!"></div>
                 </div>
             </div>
 

@@ -100,6 +100,52 @@ function resetDieValues(){
     });
 }
 
+// fnc to call when rolling all selected dice
+function rollSelectedDice(die) {
+    // set last Roll ID
+    currentRollId = "roll_" + Date.now();
+    let thisRollId = currentRollId;
+    //play sound
+    playRollSound();
+    //reset total
+    total = 0;
+    $("#total-value").text("?").animateRotate(720, 1000, "swing");
+    //reset all dice to their natural max value
+    resetDieValues();
+    // roll this and all active dice
+    let toRoll = die ? (die.hasClass("active") ? $("#table .active").add(die) : die) : $("#table .active");
+    toRoll.each(function(){
+        let currentDie = $(this);
+        currentDie.find(".rotatable > .die-value").first().text("?");
+        currentDie.children(".rotatable").first().animateRotate(
+            720,
+            1000,
+            "swing",
+            function() {
+                if (thisRollId !== currentRollId) return;
+                let result = Math.floor(Math.random() * parseInt(currentDie.attr("data-type"))) + 1;
+                total += parseInt(result);
+                currentDie.find(".rotatable > .die-value").first().text(result);
+                $("#total-value").text(total);
+            }
+        );
+    });
+}
+
+// fnc to remove a die from table
+function removeDie(die) {
+    // fade out and remove
+    die.hide(200, function(){
+        die.remove();
+
+        // if no dice left: hide "total"
+        if ($("#table .die").length == 0){
+            $("#total").fadeOut(200);
+        }
+
+    });
+}
+
 
 //// ADD DIE FUNCTION
 function addDie(type) {
@@ -118,50 +164,21 @@ function addDie(type) {
     die.find(".rotatable > .die-value").first().text(type);
 
     // button functionality: SELECT
-    die.click(function(e) {
+    die.click(function(e){
         e.stopPropagation();
         die.toggleClass("active");
     });
 
     // button functionality: ROLL
-    die.find(".die-buttons > .btn-roll").first().click(function(e) {
-        // prevent click event bubbling up
-        event.stopPropagation();
-        // set last Roll ID
-        currentRollId = "roll_" + Date.now();
-        let thisRollId = currentRollId;
-        //play sound
-        playRollSound();
-        //reset total
-        total = 0;
-        $("#total-value").text("?").animateRotate(720, 1000, "swing");
-        //reset all dice to their natural max value
-        resetDieValues();
-        // roll this and all active dice
-        let toRoll = die.hasClass("active") ? $(".active").add(die) : die;
-        toRoll.each(function(){
-            let currentDie = $(this);
-            currentDie.find(".rotatable > .die-value").first().text("?");
-            currentDie.children(".rotatable").first().animateRotate(
-                720,
-                1000,
-                "swing",
-                function() {
-                    if (thisRollId !== currentRollId) return;
-                    let result = Math.floor(Math.random() * parseInt(currentDie.attr("data-type"))) + 1;
-                    total += parseInt(result);
-                    currentDie.find(".rotatable > .die-value").first().text(result);
-                    $("#total-value").text(total);
-                }
-            );
-        });
+    die.find(".die-buttons > .btn-roll").first().click(function(e){
+        e.stopPropagation();
+        rollSelectedDice(die);
     });
 
     // button functionality: REMOVE
     die.find(".die-buttons > .btn-remove").first().click(function(e) {
-        // prevent click event bubbling up
-        event.stopPropagation();
-        die.remove();
+        e.stopPropagation();
+        removeDie(die);
     });
 
     // hide die buttons initially
@@ -177,10 +194,25 @@ function addDie(type) {
 
     // add die to table
     $("#table").append(die);
+
+    //show "total"
+    $("#total").show(0);
 };
 
+// fnc to check if all dice are selected
+function allDiceSelected(){
+    let allDiceSelected = true;
+    $("#table .die").each(function(){
+        if (!$(this).hasClass("active")){
+            allDiceSelected = false;
+            return;
+        }
+    });
+    return allDiceSelected;
+}
 
-//// INITIALIZE
+
+//// INITIALIZE UI
 
 $(function() {
 
@@ -214,6 +246,9 @@ $(function() {
         });
     });
 
+    //hide "total" itself (as there are no dice on the table, yet)
+    $("#total").hide(0);
+
     // EVENT: deselect all dice and hide help
     $("html").click(function(e) {
         e.stopPropagation();
@@ -237,6 +272,41 @@ $(function() {
     $("#help").click(function(e){
         e.stopPropagation();
         $("#help").css("display", "none");
+    });
+
+    // EVENT: click total
+    $("#total").click(function(e){
+        e.stopPropagation();
+        // check if all dice are selected
+        let allSelected = allDiceSelected();
+
+        if (!allSelected){
+            $(".die").addClass("active");
+        } else {
+            $(".die").removeClass("active");
+        }
+
+        resetDieValues();
+    });
+
+    // EVENT: click total: roll selected
+    $("#total .btn-roll-selected").click(function(e){
+        e.stopPropagation();
+        if (!$("#table .die").hasClass("active")){
+            rollSelectedDice($("#table .die"));
+        } else {
+            rollSelectedDice($("#table .die.active"));
+        }
+    });
+
+    // EVENT: click total: remove selected
+    $("#total .btn-remove-selected").click(function(e){
+        e.stopPropagation();
+        if (!$("#table .die").hasClass("active")){
+            removeDie($("#table .die"));
+        } else {
+            removeDie($("#table .die.active"));
+        }
     });
 
 });
